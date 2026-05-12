@@ -6,14 +6,13 @@ root.resizable(False,False)
 
 
 frame = Frame(root)
-frame.pack()
+frame.grid()
 
 e = Entry(root, width=50)
-e.pack()
+e.grid()
 e.insert(0, "Enter your username")
 
-
-myLabel = Label(root, text="welcome to the rank score calculator")
+myLabel_frame = Label(root, text="welcome to the rank score calculator")
 myLabel_frame.grid(row=1, column=1)
 
 
@@ -21,7 +20,7 @@ def username_data():
     username = username_entry.get()
     print(username, "Let's start calculating your rank score, click the button to begin")
 
-username_info_frame = tkinter.LabelFrame(frame, text="Enter your username")
+username_info_frame = tkinter.LabelFrame(frame, text="Enter your username", command=username_data())
 username_info_frame.grid(row=1, column=2, padx=5, pady=5)
 
 info_button = tkinter.LabelFrame(frame, text="Click here for program information")
@@ -33,7 +32,7 @@ username_entry.grid(row=1, column=2, padx=5, pady=5)
 
 def myClick():
     myLabel = Label(root, text="Enter your username here:" + e.get())
-    myLabel.pack()
+    myLabel.grid()
 
 myButton = Button(root, text="click to start calculating")
 myButton.pack()
