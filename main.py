@@ -1,46 +1,57 @@
 import tkinter
 from tkinter import*
 from types import new_class
+from PIL import ImageTk, Image
 
 root = Tk()
-root.geometry("700x400")
-root.resizable(False,False)
+root.geometry("800x500")
+root.resizable(True,True)
+root.title("Rank Score Calculator Intro")
 
-#Creating new window after submit button is clicked
-def new_window():
-    new_root = Toplevel()
-    old_root.destroy()
-old_root = Tk()
+frame = Frame(root, bg="#FFE27A")
+frame.place(relwidth=1, relheight=1)
 
-frame = Frame(root)
-frame.grid()
+box=Frame(root, bg="#CEECF6")
+box.place(relx=0.5, rely= 0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
-subjects={}
+myLabel = Label(frame, text="Rank Score Calculator", bg="#FFE27A")
+myLabel.place(relx=0.5, rely=0.05)
 
-myLabel = tkinter.LabelFrame(frame, text="Rank Score Calculator")
-myLabel.grid(row=0, column=5, padx=5, pady=10)
+myLabel = Label(box, text="Enter your username:", bg="#CEECF6")
+myLabel.place(relx=0.3, rely=0.5, )
 
-info_button = tkinter.LabelFrame(frame, text="Click here for program information")
-info_button.grid(row=5, column=0)
-
-username_entry =  tkinter.Entry(frame, text="Username:")
-username_entry.grid(row=1, column=1, padx=5, pady=2)
-
-#separate entry username
-#username_entry =  tkinter.Entry(e.get())
-#username_entry.grid(row=1, column=2, padx=5, pady=5)
+username_entry =  tkinter.Entry(box)
+username_entry.place(relx=0.5, rely=0.5)
 
 
-
-def username_data():
+def submit_username():
     username = username_entry.get()
-    print(username, "Let's start calculating your rank score, click the button to begin")
 
-done_button=Button(root, text="Click to register username", command=username_data())
-done_button.grid(row=1, column=3)
+    root.Tk=new_class()
+    frame = Frame(new_class)
+    frame.place(relwidth=1, relheight=1)
 
-submit_button=Button(root, text="Submit/Start", command=new_window())
-submit_button.grid(row=5, column=1)
+    box = Frame(new_class)
+    box.place(relx=0.55, rely=0.53, relwidth=0.8, relheight=0.6)
+
+    subjects = ["Accounting","Adult Education","Agricultural and Horticultural Science","Agribusiness","Art History","Biology","Business and Management","Business Studies","Chemistry","Chinese (Mandarin)",
+    "Classical Studies","Cook Islands Māori","Core Skills","Dance","Design and Visual Communication","Digital Technologies","Drama","Driver Licence (Class 1)",
+    "Early Childhood Education","Earth and Space Science","Economics","Education for Sustainability","English","English for Academic Purposes","English Language",
+    "Field Māori","French","Gagana Sāmoa","Gagana Tokelau","Geography","German","Hangarau","Hauora","Health","History","Home Economics","Japanese","Korean",
+    "Latin","Lea Faka-Tonga","Legal Studies","Literacy - Reading","Literacy - Writing","Mathematics and Statistics","Media Studies","Music","New Zealand Sign Language",
+    "Ngā Mahi a te Rēhia","Numeracy","Pacific Studies","Pāngarau","Physical Education","Physics","Psychology","Pūtaiao","Religious Studies","Samoan","Science",
+    "Social Studies","Sociology","Spanish","Supported Learning","Te Ao Haka","Technology","Te Reo Māori","Te Reo Māori Kūki ‘Āirani","Te Reo Matatini","Te Reo Pāngarau",
+    "Te Reo Rangatira","Tikanga ā-Iwi","Toi Ataata","Toi Puoro","Vagahau Niue","Visual Arts"]
+
+    selected_option = StringVar()
+    selected_option.set("Select a subject")
+
+    dropdown1 = OptionMenu(frame, selected_option, *subjects)
+    dropdown1.place(relx=0.06, rely=0.2, anchor="center")
+
+
+submit_button=Button(root, text="Submit/Start", command=submit_username)
+submit_button.place(relx=0.5, rely=0.8)
 
 
 
