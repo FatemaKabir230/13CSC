@@ -1,4 +1,5 @@
 import tkinter
+from ctypes.wintypes import LANGID
 from tkinter import*
 from types import new_class
 from PIL import ImageTk, Image
@@ -23,16 +24,26 @@ myLabel.place(relx=0.3, rely=0.5, )
 username_entry =  tkinter.Entry(box)
 username_entry.place(relx=0.5, rely=0.5)
 
+img = Image.open("stretch 1.png")
+img = img.resize((250, 250))
+photo = ImageTk.PhotoImage(img)
+
+
+
+
 
 def submit_username():
-    username = username_entry.get()
+    #username = username_entry.get()
 
-    root.Tk=new_class()
-    frame = Frame(new_class)
+    #root.place_forget()
+
+    new_class = Toplevel()
+
+    frame = Frame(new_class, bg="#CEECF6")
     frame.place(relwidth=1, relheight=1)
 
-    box = Frame(new_class)
-    box.place(relx=0.55, rely=0.53, relwidth=0.8, relheight=0.6)
+    box = Frame(new_class, bg="white")
+    box.place(relx=0.53, rely=0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
     subjects = ["Accounting","Adult Education","Agricultural and Horticultural Science","Agribusiness","Art History","Biology","Business and Management","Business Studies","Chemistry","Chinese (Mandarin)",
     "Classical Studies","Cook Islands Māori","Core Skills","Dance","Design and Visual Communication","Digital Technologies","Drama","Driver Licence (Class 1)",
@@ -43,11 +54,92 @@ def submit_username():
     "Social Studies","Sociology","Spanish","Supported Learning","Te Ao Haka","Technology","Te Reo Māori","Te Reo Māori Kūki ‘Āirani","Te Reo Matatini","Te Reo Pāngarau",
     "Te Reo Rangatira","Tikanga ā-Iwi","Toi Ataata","Toi Puoro","Vagahau Niue","Visual Arts"]
 
+
+    n_ach = Label(new_class, text="Not Achieved:", bg="#CEECF6")
+    n_ach.place(relx=0.2, rely=0.03, anchor="center")
+    ach = Label(new_class, text="Achieved:", bg="#CEECF6")
+    ach.place(relx=0.4, rely=0.03, anchor="center")
+    mer = Label(new_class, text="Merit:", bg="#CEECF6")
+    mer.place(relx=0.6, rely=0.03, anchor="center" )
+    ex = Label(new_class, text="Excellence:", bg="#CEECF6")
+    ex.place(relx=0.8, rely=0.03, anchor="center" )
+
+
+    #Drowdown boxes
     selected_option = StringVar()
     selected_option.set("Select a subject")
 
-    dropdown1 = OptionMenu(frame, selected_option, *subjects)
-    dropdown1.place(relx=0.06, rely=0.2, anchor="center")
+    dropdown1 = OptionMenu(new_class, selected_option, *subjects)
+    dropdown1.place(relx=0.04, rely=0.2, anchor="center")
+
+    dropdown2 = OptionMenu(new_class, selected_option, *subjects)
+    dropdown2.place(relx=0.04, rely=0.35, anchor="center")
+
+    dropdown3 = OptionMenu(new_class, selected_option, *subjects)
+    dropdown3.place(relx=0.04, rely=0.5, anchor="center")
+
+    dropdown4 = OptionMenu(new_class, selected_option, *subjects)
+    dropdown4.place(relx=0.04, rely=0.65, anchor="center")
+
+    dropdown5 = OptionMenu(new_class, selected_option, *subjects)
+    dropdown5.place(relx=0.04, rely=0.8, anchor="center")
+
+    s1e = tkinter.Entry(new_class)
+    s1e.place(relx=0.2, rely=0.2, anchor="center")
+    s1e = tkinter.Entry(new_class)
+    s1e.place(relx=0.2, rely=0.35, anchor="center")
+    s1e = tkinter.Entry(new_class)
+    s1e.place(relx=0.2, rely=0.5, anchor="center")
+    s1e = tkinter.Entry(new_class)
+    s1e.place(relx=0.2, rely=0.65, anchor="center")
+    s1e = tkinter.Entry(new_class)
+    s1e.place(relx=0.2, rely=0.8, anchor="center")
+
+    s2e = tkinter.Entry(new_class)
+    s2e.place(relx=0.4, rely=0.2, anchor="center")
+    s2e = tkinter.Entry(new_class)
+    s2e.place(relx=0.4, rely=0.35, anchor="center")
+    s2e = tkinter.Entry(new_class)
+    s2e.place(relx=0.4, rely=0.5, anchor="center")
+    s2e = tkinter.Entry(new_class)
+    s2e.place(relx=0.4, rely=0.65, anchor="center")
+    s2e = tkinter.Entry(new_class)
+    s2e.place(relx=0.4, rely=0.8, anchor="center")
+
+    s3e = tkinter.Entry(new_class)
+    s3e.place(relx=0.6, rely=0.2, anchor="center")
+    s3e = tkinter.Entry(new_class)
+    s3e.place(relx=0.6, rely=0.35, anchor="center")
+    s3e = tkinter.Entry(new_class)
+    s3e.place(relx=0.6, rely=0.5, anchor="center")
+    s3e = tkinter.Entry(new_class)
+    s3e.place(relx=0.6, rely=0.65, anchor="center")
+    s3e = tkinter.Entry(new_class)
+    s3e.place(relx=0.6, rely=0.8, anchor="center")
+
+    s4e = tkinter.Entry(new_class)
+    s4e.place(relx=0.8, rely=0.2, anchor="center")
+    s4e = tkinter.Entry(new_class)
+    s4e.place(relx=0.8, rely=0.35, anchor="center")
+    s4e = tkinter.Entry(new_class)
+    s4e.place(relx=0.8, rely=0.5, anchor="center")
+    s4e = tkinter.Entry(new_class)
+    s4e.place(relx=0.8, rely=0.65, anchor="center")
+    s4e = tkinter.Entry(new_class, )
+    s4e.place(relx=0.8, rely=0.8, anchor="center")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 submit_button=Button(root, text="Submit/Start", command=submit_username)
