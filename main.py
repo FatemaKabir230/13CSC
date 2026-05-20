@@ -24,25 +24,36 @@ myLabel.place(relx=0.3, rely=0.5, )
 username_entry =  tkinter.Entry(box)
 username_entry.place(relx=0.5, rely=0.5)
 
-img = Image.open("stretch 1.png")
-img = img.resize((250, 250))
-photo = ImageTk.PhotoImage(img)
+#Image1
+image = Image.open("stretch 1.png")
+image = image.resize((300, 300))
+img = ImageTk.PhotoImage(image)
+label = Label(box, image=img, bg="#CEECF6")
+label.place(relx=0.2, rely=0.8, anchor="center")
 
-
-
+#Image2
+image = Image.open("worker 1.png")
+image = image.resize((260, 260))
+img1 = ImageTk.PhotoImage(image)
+label = Label(box, image=img1, bg="#CEECF6")
+label.place(relx=0.8, rely=0.8, anchor="center")
 
 
 def submit_username():
     #username = username_entry.get()
-
+    #frame.place_forget()
     #root.place_forget()
 
     new_class = Toplevel()
+    new_class.title("Entry of Subjects/Credits")
+    new_class.configure(bg="#CEECF6")
+    new_class.resizable(True,True)
+
 
     frame = Frame(new_class, bg="#CEECF6")
     frame.place(relwidth=1, relheight=1)
 
-    box = Frame(new_class, bg="white")
+    box = Frame(new_class, bg="#EEEEEE")
     box.place(relx=0.53, rely=0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
     subjects = ["Accounting","Adult Education","Agricultural and Horticultural Science","Agribusiness","Art History","Biology","Business and Management","Business Studies","Chemistry","Chinese (Mandarin)",
@@ -84,7 +95,7 @@ def submit_username():
     dropdown5 = OptionMenu(new_class, selected_option, *subjects)
     dropdown5.place(relx=0.04, rely=0.8, anchor="center")
 
-    s1e = tkinter.Entry(new_class)
+    s1e = tkinter.Entry(new_class, width=20)
     s1e.place(relx=0.2, rely=0.2, anchor="center")
     s1e = tkinter.Entry(new_class)
     s1e.place(relx=0.2, rely=0.35, anchor="center")
@@ -128,22 +139,26 @@ def submit_username():
     s4e = tkinter.Entry(new_class, )
     s4e.place(relx=0.8, rely=0.8, anchor="center")
 
+    def final_window():
+        results_window = Toplevel()
+        results_window.title("Entry of Subjects/Credits")
+        results_window.configure(bg="#CEECF6")
+        results_window.resizable(True, True)
+
+        frame = Frame(results_window, bg="#CEECF6")
+        frame.place(relwidth=1, relheight=1)
+
+        box = Frame(results_window, bg="white")
+        box.place(relx=0.53, rely=0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
 
-
-
-
-
-
-
-
-
-
-
-
+    results_button = Button(frame, text="Done", command=final_window)
+    results_button.place(relx=0.5, rely=0.8)
 
 submit_button=Button(root, text="Submit/Start", command=submit_username)
 submit_button.place(relx=0.5, rely=0.8)
+
+
 
 
 
