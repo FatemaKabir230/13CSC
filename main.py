@@ -44,6 +44,8 @@ def submit_username():
     #frame.place_forget()
     #root.place_forget()
 
+
+
     new_class = Toplevel()
     new_class.title("Entry of Subjects/Credits")
     new_class.configure(bg="#CEECF6")
@@ -152,10 +154,11 @@ def submit_username():
         box.place(relx=0.53, rely=0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
 
-    results_button = Button(frame, text="Done", command=final_window)
+    results_button = Button(new_class, text="Done", command=lambda: [final_window(), new_class.destroy()])
     results_button.place(relx=0.5, rely=0.8)
 
-submit_button=Button(root, text="Submit/Start", command=submit_username)
+
+submit_button=Button(root, text="Submit/Start", command=lambda: [submit_username(), frame.destroy(), box.destroy()])
 submit_button.place(relx=0.5, rely=0.8)
 
 
