@@ -9,6 +9,7 @@ root.geometry("800x500")
 root.resizable(True,True)
 root.title("Rank Score Calculator Intro")
 
+
 frame = Frame(root, bg="#FFE27A")
 frame.place(relwidth=1, relheight=1)
 
@@ -154,11 +155,42 @@ def submit_username():
         box.place(relx=0.53, rely=0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
 
+        total_rank_score = Label(results_window, text="Total Rank Score:", bg="#CEECF6")
+        total_rank_score.place(relx=0.5, rely=0.1, anchor="center")
+
+        #Breakdown of total credits of each grade
+        not_achieved_credits = Label(results_window, text="NA:", bg="#CEECF6")
+        not_achieved_credits.place(relx=0.15, rely=0.1, anchor="center")
+        achieved_credits = Label(results_window, text="ACH::", bg="#CEECF6")
+        achieved_credits.place(relx=0.35, rely=0.1, anchor="center")
+        merit_credits = Label(results_window, text="MERIT::", bg="#CEECF6")
+        merit_credits.place(relx=0.55, rely=0.1, anchor="center")
+        excellence_credits = Label(results_window, text="EXCELLENCE:", bg="#CEECF6")
+        excellence_credits.place(relx=0.75, rely=0.1, anchor="center")
+
+        #Displays rank score to user + uses their entered username from home page
+        username = username_entry.get()
+        user_rank_score_label = Label(results_window, text=username + "your rank score is:", bg="#CEECF6")
+        user_rank_score_label.place(relx=0.15, rely=0.3, anchor="center")
+        #Display total rank score value (whole value)
+        user_rank_score = Label(results_window, text="#:", bg="#CEECF6")
+        user_rank_score.place(relx=0.15, rely=0.3, anchor="center")
+
+        #Dictionary of UOA undergrad degrees with assigned value as needed rank score
+        UOA_undergrad_degrees={}
+
+        #Drop down menu for choosing UOA degree
+        degree_selected_option = StringVar()
+        degree_selected_option.set("Select your desired degree of admission")
+        degree_1_dropdown = OptionMenu(results_window, degree_selected_option, *UOA_undergrad_degrees)
+        degree_1_dropdown.place(relx=0.04, rely=0.2, anchor="center")
+
+    # Entry page done button which when clicked launches results window, and destroys entry page
     results_button = Button(new_class, text="Done", command=lambda: [final_window(), new_class.destroy()])
     results_button.place(relx=0.5, rely=0.8)
 
-
-submit_button=Button(root, text="Submit/Start", command=lambda: [submit_username(), frame.destroy(), box.destroy()])
+#Home page submit button which when clicked launches entry page and destroys home page
+submit_button=Button(box, text="Submit/Start", command=lambda: [submit_username(), frame.destroy(), box.destroy()])
 submit_button.place(relx=0.5, rely=0.8)
 
 
