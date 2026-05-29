@@ -158,12 +158,12 @@ def submit_username():
         total_rank_score = Label(results_window, text="Total Rank Score:", bg="#CEECF6")
         total_rank_score.place(relx=0.5, rely=0.1, anchor="center")
 
-        #Breakdown of total credits of each grade
+        # Breakdown of total credits of each grade
         not_achieved_credits = Label(results_window, text="NA:", bg="#CEECF6")
         not_achieved_credits.place(relx=0.15, rely=0.1, anchor="center")
-        achieved_credits = Label(results_window, text="ACH::", bg="#CEECF6")
+        achieved_credits = Label(results_window, text="ACH:", bg="#CEECF6")
         achieved_credits.place(relx=0.35, rely=0.1, anchor="center")
-        merit_credits = Label(results_window, text="MERIT::", bg="#CEECF6")
+        merit_credits = Label(results_window, text="MERIT:", bg="#CEECF6")
         merit_credits.place(relx=0.55, rely=0.1, anchor="center")
         excellence_credits = Label(results_window, text="EXCELLENCE:", bg="#CEECF6")
         excellence_credits.place(relx=0.75, rely=0.1, anchor="center")
@@ -177,7 +177,9 @@ def submit_username():
         user_rank_score.place(relx=0.15, rely=0.3, anchor="center")
 
         #Dictionary of UOA undergrad degrees with assigned value as needed rank score
-        UOA_undergrad_degrees={}
+        UOA_undergrad_degrees= { ["Bachelor of Commerce (BCom)", "200"], ["Bachelor of Property (BProp)", "165"], ["Bachelor of Early Childhood Studies (BECSt)", "150"]
+        ["Bachelor of Education (Tchg)", "150"], ,
+}
 
         #Drop down menu for choosing UOA degree
         degree_selected_option = StringVar()
