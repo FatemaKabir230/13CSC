@@ -178,9 +178,17 @@ def submit_username():
 
         #Dictionary of UOA undergrad degrees with assigned value as needed rank score
         UOA_undergrad_degrees= { ["Bachelor of Commerce (BCom)", "200"], ["Bachelor of Property (BProp)", "165"], ["Bachelor of Early Childhood Studies (BECSt)", "150"]
-        ["Bachelor of Education (Tchg)", "150"], ,
-}
+        ["Bachelor of Education (Tchg)", "150",],["Bachelor of Education (TESOL)", "150"], ["Bachelor of Architectural Studies (BAS)", "230"],
+        ["Bachelor of Design (BDes)", "180"], ["Bachelor of Engineering (Honours) (BE(Hons))", "250"], ["Bachelor of Urban Planning(Honours) (BUrbPlan(Hons))", "180"],
+        ["Bachelor of Health Sciences(BHSc)", "250"], ["Bachelor of Nursing (BNurs)", "230"], ["Bachelor of Sport Health and Physical Education (BSportHPE)", "150"],
+        ["Bachelor of Arts (BA)", "150"], ["Bachelor of Communication (BC)", "165"], ["Bachelor of Global Studies (BGlobalSt)", "180"], ["Bachelor of Global Studies (BGlobalSt)", "180"],
+        ["Bachelor of Dance Studies (BDanceSt)", "150"], ["Bachelor of Music (BMus)", "150"], ["Bachelor of Music (BMus)", "150"], ["Bachelor of Science (BSc)", "200"],
+        ["Bachelor of Health Sciences (BHSc)", "200"],
+                                 }
 
+
+#degrees which require to finish bachelor of science first year then - Bachelor of Medical Imaging (Honours) (BMedImag(Hons)),
+#Bachelor of Medicine and Bachelor of Surgery (MBChB)
         #Drop down menu for choosing UOA degree
         degree_selected_option = StringVar()
         degree_selected_option.set("Select your desired degree of admission")
