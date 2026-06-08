@@ -1,7 +1,6 @@
 import tkinter
 from ctypes.wintypes import LANGID
 from tkinter import*
-from types import new_class
 from PIL import ImageTk, Image
 
 root = Tk()
@@ -191,14 +190,13 @@ def submit_username():
 
         #Dictionary of UOA undergrad degrees with assigned value as needed rank score
         #pay attention to changed degree rank scores (biomed and health sci) + new degrees like science field - cells etc
-        UOA_undergrad_degrees= { ["Bachelor of Commerce (BCom)", "200"], ["Bachelor of Property (BProp)", "165"], ["Bachelor of Early Childhood Studies (BECSt)", "150"]
-        ["Bachelor of Education (Tchg)", "150"],["Bachelor of Education (TESOL)", "150"], ["Bachelor of Architectural Studies (BAS)", "230"],
-        ["Bachelor of Design (BDes)", "180"], ["Bachelor of Engineering (Honours) (BE(Hons))", "250"], ["Bachelor of Urban Planning(Honours) (BUrbPlan(Hons))", "180"],
-        ["Bachelor of Health Sciences(BHSc)", "250"], ["Bachelor of Nursing (BNurs)", "230"], ["Bachelor of Sport Health and Physical Education (BSportHPE)", "150"],
-        ["Bachelor of Arts (BA)", "150"], ["Bachelor of Communication (BC)", "165"], ["Bachelor of Global Studies (BGlobalSt)", "180"], ["Bachelor of Global Studies (BGlobalSt)", "180"],
-        ["Bachelor of Dance Studies (BDanceSt)", "150"], ["Bachelor of Music (BMus)", "150"], ["Bachelor of Music (BMus)", "150"], ["Bachelor of Science (BSc)", "200"],
-        ["Bachelor of Health Sciences (BHSc)", "200"],
-                                 }
+        UOA_undergrad_degrees= { "Bachelor of Commerce (BCom)": 200, "Bachelor of Property (BProp)": 165, "Bachelor of Early Childhood Studies (BECSt)": 150,
+        "Bachelor of Education (Tchg)": 150, "Bachelor of Education (TESOL)": 150, "Bachelor of Architectural Studies (BAS)": 230,
+        "Bachelor of Design (BDes)": 180, "Bachelor of Engineering (Honours) (BE(Hons))": 250, "Bachelor of Urban Planning(Honours) (BUrbPlan(Hons))": 180,
+        "Bachelor of Health Sciences(BHSc)": 250, "Bachelor of Nursing (BNurs)": 230, "Bachelor of Sport Health and Physical Education (BSportHPE)": 150,
+        "Bachelor of Arts (BA)": 150, "Bachelor of Communication (BC)": 165, "Bachelor of Global Studies (BGlobalSt)": 180, "Bachelor of Global Studies (BGlobalSt)": 180,
+        "Bachelor of Dance Studies (BDanceSt)": 150, "Bachelor of Music (BMus)": 150, "Bachelor of Music (BMus)": 150, "Bachelor of Science (BSc)": 200,
+        "Bachelor of Health Sciences (BHSc)": 200}
 
 
 #degrees which require to finish bachelor of science first year then - Bachelor of Medical Imaging (Honours) (BMedImag(Hons)),
