@@ -16,13 +16,13 @@ box=Frame(root, bg="#CEECF6")
 box.place(relx=0.5, rely= 0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
 myLabel = Label(frame, text="Rank Score Calculator", bg="#FFE27A")
-myLabel.place(relx=0.5, rely=0.05)
+myLabel.place(relx=0.45, rely=0.05)
 
 myLabel = Label(box, text="Enter your username:", bg="#CEECF6")
-myLabel.place(relx=0.3, rely=0.5, )
+myLabel.place(relx=0.3, rely=0.3, )
 
 username_entry =  tkinter.Entry(box)
-username_entry.place(relx=0.5, rely=0.5)
+username_entry.place(relx=0.5, rely=0.3)
 
 #Image1
 image = Image.open("stretch 1.png")
@@ -55,7 +55,7 @@ def submit_username():
     frame = Frame(new_class, bg="#CEECF6")
     frame.place(relwidth=1, relheight=1)
 
-    box = Frame(new_class, bg="#EEEEEE")
+    box = Frame(new_class, bg="white")
     box.place(relx=0.53, rely=0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
     subjects = ["Accounting","Adult Education","Agricultural and Horticultural Science","Agribusiness","Art History","Biology","Business and Management","Business Studies","Chemistry","Chinese (Mandarin)",
@@ -159,9 +159,38 @@ def submit_username():
     s5e = tkinter.Entry(new_class, )
     s5e.place(relx=0.8, rely=0.8, anchor="center")
 
-    #focus on certain entry widgets?
-    s4e.focus()
+    # Group all entries for calculation prioritization
 
+
+    total_na = sum(int(e.get() or 0) for e in [s1na, s2na, s3na, s4na, s5na])
+    total_a = sum(int(e.get() or 0) for e in [s1a, s2a, s3a, s4a, s5a])
+    total_m = sum(int(e.get() or 0) for e in [s1m, s2m, s3m, s4m, s5m])
+    total_e = sum(int(e.get() or 0) for e in [s1m, s2m, s3m, s4m, s5m])
+
+    max_credits_left = 80
+
+    e_taken = min(total_e, max_credits_left)
+    max_credits_left -= e_taken
+
+    m_taken = min(total_e, max_credits_left)
+    max_credits_left -= m_taken
+
+    a_taken = min(total_e, max_credits_left)
+    max_credits_left -= a_taken
+
+    na_taken = min(total_e, max_credits_left)
+    max_credits_left -= na_taken
+
+    rank_score = (
+        e_taken * 4 +
+        m_taken * 3 +
+        a_taken * 2 +
+        na_taken * 1
+    )
+
+
+
+    # Launches results screen
     def final_window():
         results_window = Toplevel()
         results_window.title("Rank Score Results and Desired Degree")
@@ -176,7 +205,7 @@ def submit_username():
         box.place(relx=0.53, rely=0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
 
-        total_rank_score = Label(results_window, text="Total Rank Score:", bg="#CEECF6")
+        total_rank_score = Label(results_window, text=rank_score, bg="#CEECF6")
         total_rank_score.place(relx=0.5, rely=0.1, anchor="center")
 
         # Breakdown of total credits of each grade
@@ -202,6 +231,7 @@ def submit_username():
         comparision_label.place(relx=0.5, rely=0.5, anchor="center", )
 
         #Code to meet desired rank score
+
 
 
 
@@ -231,7 +261,7 @@ def submit_username():
     results_button.place(relx=0.5, rely=0.8)
 
 #Home page submit button which when clicked launches entry page and destroys home page
-submit_button=Button(box, text="Submit/Start", command=lambda: [submit_username(), frame.destroy(), box.destroy()])
+submit_button=Button(box, text="Submit/Start", command=lambda: [submit_username(), root.withdraw()])
 submit_button.place(relx=0.5, rely=0.8)
 
 
