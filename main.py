@@ -79,23 +79,40 @@ def submit_username():
 
 
     #Drowdown boxes
+
     selected_option = StringVar()
     selected_option.set("Select a subject")
 
-    dropdown1 = OptionMenu(new_class, selected_option, *subjects)
+    subject1 = StringVar()
+    subject1.set("Select a subject")
+
+    subject2 = StringVar()
+    subject2.set("Select a subject")
+
+    subject3 = StringVar()
+    subject3.set("Select a subject")
+
+    subject4 = StringVar()
+    subject4.set("Select a subject")
+
+    subject5 = StringVar()
+    subject5.set("Select a subject")
+
+    dropdown1 = OptionMenu(new_class, subject1, selected_option, *subjects)
     dropdown1.place(relx=0.04, rely=0.2, anchor="center")
 
-    dropdown2 = OptionMenu(new_class, selected_option, *subjects)
+    dropdown2 = OptionMenu(new_class, subject2, selected_option, *subjects)
     dropdown2.place(relx=0.04, rely=0.35, anchor="center")
 
-    dropdown3 = OptionMenu(new_class, selected_option, *subjects)
+    dropdown3 = OptionMenu(new_class, subject3, selected_option, *subjects)
     dropdown3.place(relx=0.04, rely=0.5, anchor="center")
 
-    dropdown4 = OptionMenu(new_class, selected_option, *subjects)
+    dropdown4 = OptionMenu(new_class, subject4, selected_option, *subjects)
     dropdown4.place(relx=0.04, rely=0.65, anchor="center")
 
-    dropdown5 = OptionMenu(new_class, selected_option, *subjects)
+    dropdown5 = OptionMenu(new_class, subject5, selected_option, *subjects)
     dropdown5.place(relx=0.04, rely=0.8, anchor="center")
+
 
     #Subject and credit entry widgets
     s1na = tkinter.Entry(new_class, width=20)
@@ -207,13 +224,10 @@ def submit_username():
         degree_1_dropdown = OptionMenu(results_window, degree_selected_option, *UOA_undergrad_degrees)
         degree_1_dropdown.place(relx=0.04, rely=0.2, anchor="center")
 
-    def calcrs():
-        s5e.get(), s4e.get(), s3e.get(), s2e.get(), s1e.get()
-        if
 
 
     # Entry page done button which when clicked launches results window, and destroys entry page
-    results_button = Button(new_class, text="Done", command=lambda: [final_window(), new_class.destroy(), calcrs()])
+    results_button = Button(new_class, text="Done", command=lambda: [final_window(), new_class.destroy()])
     results_button.place(relx=0.5, rely=0.8)
 
 #Home page submit button which when clicked launches entry page and destroys home page
