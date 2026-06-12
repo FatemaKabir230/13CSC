@@ -100,23 +100,23 @@ def submit_username():
     subject5.set("Select a subject")
 
     dropdown1 = OptionMenu(new_class, subject1, selected_option, *subjects)
-    dropdown1.place(relx=0.04, rely=0.2, anchor="center")
+    dropdown1.place(relx=0.07, rely=0.2, anchor="center")
 
     dropdown2 = OptionMenu(new_class, subject2, selected_option, *subjects)
-    dropdown2.place(relx=0.04, rely=0.35, anchor="center")
+    dropdown2.place(relx=0.07, rely=0.35, anchor="center")
 
     dropdown3 = OptionMenu(new_class, subject3, selected_option, *subjects)
-    dropdown3.place(relx=0.04, rely=0.5, anchor="center")
+    dropdown3.place(relx=0.07, rely=0.5, anchor="center")
 
     dropdown4 = OptionMenu(new_class, subject4, selected_option, *subjects)
-    dropdown4.place(relx=0.04, rely=0.65, anchor="center")
+    dropdown4.place(relx=0.07, rely=0.65, anchor="center")
 
     dropdown5 = OptionMenu(new_class, subject5, selected_option, *subjects)
-    dropdown5.place(relx=0.04, rely=0.8, anchor="center")
+    dropdown5.place(relx=0.07, rely=0.8, anchor="center")
 
 
     #Subject and credit entry widgets
-    s1na = tkinter.Entry(new_class, bd=5, width=20)
+    s1na = tkinter.Entry(new_class, borderwidth=1)
     s1na.place(relx=0.2, rely=0.2, anchor="center")
     s2na = tkinter.Entry(new_class)
     s2na.place(relx=0.2, rely=0.35, anchor="center")
@@ -160,32 +160,6 @@ def submit_username():
     s5e = tkinter.Entry(new_class, )
     s5e.place(relx=0.8, rely=0.8, anchor="center")
 
-    # Group all entries for calculation prioritization
-    total_na = sum(int(e.get() or 0) for e in [s1na, s2na, s3na, s4na, s5na])
-    total_a = sum(int(e.get() or 0) for e in [s1a, s2a, s3a, s4a, s5a])
-    total_m = sum(int(e.get() or 0) for e in [s1m, s2m, s3m, s4m, s5m])
-    total_e = sum(int(e.get() or 0) for e in [s1m, s2m, s3m, s4m, s5m])
-
-    max_credits_left = 80
-
-    e_taken = min(total_e, max_credits_left)
-    max_credits_left -= e_taken
-
-    m_taken = min(total_m, max_credits_left)
-    max_credits_left -= m_taken
-
-    a_taken = min(total_a, max_credits_left)
-    max_credits_left -= a_taken
-
-    na_taken = min(total_na, max_credits_left)
-    max_credits_left -= na_taken
-
-    rank_score = (
-            e_taken * 4 +
-            m_taken * 3 +
-            a_taken * 2 +
-            na_taken * 1
-    )
 
 
     # Launches results screen
@@ -196,34 +170,64 @@ def submit_username():
         results_window.resizable(True, True)
         results_window.geometry("1200x700")
 
-        frame = Frame(results_window, bg="#CEECF6")
+        frame = Frame(results_window, bg="#FFE27A")
         frame.place(relwidth=1, relheight=1)
 
-        box = Frame(results_window, bg="white")
+        box = Frame(results_window, bg="#CEECF6")
         box.place(relx=0.53, rely=0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
+        # Group all entries for calculation prioritization
+        total_na = sum(int(e.get() or 0) for e in [s1na, s2na, s3na, s4na, s5na])
+        total_a = sum(int(e.get() or 0) for e in [s1a, s2a, s3a, s4a, s5a])
+        total_m = sum(int(e.get() or 0) for e in [s1m, s2m, s3m, s4m, s5m])
+        total_e = sum(int(e.get() or 0) for e in [s1e, s2e, s3e, s4e, s5e])
+
+        max_credits_left = 80
+
+        e_taken = min(total_e, max_credits_left)
+        max_credits_left -= e_taken
+
+        m_taken = min(total_m, max_credits_left)
+        max_credits_left -= m_taken
+
+        a_taken = min(total_a, max_credits_left)
+        max_credits_left -= a_taken
+
+        na_taken = min(total_na, max_credits_left)
+        max_credits_left -= na_taken
+
+        rank_score = (
+                e_taken * 4 +
+                m_taken * 3 +
+                a_taken * 2 +
+                na_taken * 1
+        )
+
+
+        total_rank_score = Label(results_window, text="Your rank score is", bg="#CEECF6")
+        total_rank_score.place(relx=0.4, rely=0.2, anchor="center")
         total_rank_score = Label(results_window, text=rank_score, bg="#CEECF6")
-        total_rank_score.place(relx=0.5, rely=0.02, anchor="center")
+        total_rank_score.place(relx=0.5, rely=0.2, anchor="center")
 
 
         # Breakdown of total credits of each grade
-        not_achieved_credits = Label(results_window, text="NOT ACHIEVED:", bg="#CEECF6")
-        not_achieved_credits.place(relx=0.15, rely=0.1, anchor="center")
-        achieved_credits = Label(results_window, text="ACHIEVED:", bg="#CEECF6")
-        achieved_credits.place(relx=0.35, rely=0.1, anchor="center")
-        merit_credits = Label(results_window, text="MERIT:", bg="#CEECF6")
-        merit_credits.place(relx=0.55, rely=0.1, anchor="center")
-        excellence_credits = Label(results_window, text="EXCELLENCE:", bg="#CEECF6")
-        excellence_credits.place(relx=0.75, rely=0.1, anchor="center")
+        not_achieved_credits = Label(results_window, text="NOT ACHIEVED:", bg="white")
+        not_achieved_credits.place(relx=0.15, rely=0.3, anchor="center")
+        achieved_credits = Label(results_window, text="ACHIEVED:", bg="white")
+        achieved_credits.place(relx=0.35, rely=0.3, anchor="center")
+        merit_credits = Label(results_window, text="MERIT:", bg="white")
+        merit_credits.place(relx=0.55, rely=0.3, anchor="center")
+        excellence_credits = Label(results_window, text="EXCELLENCE:", bg="white")
+        excellence_credits.place(relx=0.75, rely=0.3, anchor="center")
 
-        not_achieved_br = Label(results_window, text=total_na, bg="#CEECF6")
-        not_achieved_br.place(relx=0.15, rely=0.2, anchor="center")
-        achieved_br = Label(results_window, text=total_a, bg="#CEECF6")
-        achieved_br.place(relx=0.35, rely=0.2, anchor="center")
-        merit_br = Label(results_window, text=total_m, bg="#CEECF6")
-        merit_br.place(relx=0.55, rely=0.2, anchor="center")
-        excellence_br = Label(results_window, text=total_e, bg="#CEECF6")
-        excellence_br.place(relx=0.75, rely=0.2, anchor="center")
+        not_achieved_br = Label(results_window, text=na_taken, bg="white")
+        not_achieved_br.place(relx=0.15, rely=0.4, anchor="center")
+        achieved_br = Label(results_window, text=a_taken, bg="white")
+        achieved_br.place(relx=0.35, rely=0.4, anchor="center")
+        merit_br = Label(results_window, text=m_taken, bg="white")
+        merit_br.place(relx=0.55, rely=0.4, anchor="center")
+        excellence_br = Label(results_window, text=e_taken, bg="white")
+        excellence_br.place(relx=0.75, rely=0.4, anchor="center")
 
 
         #Dictionary of UOA undergrad degrees with assigned value as needed rank score
@@ -241,15 +245,15 @@ def submit_username():
 #Bachelor of Medicine and Bachelor of Surgery (MBChB), optometry, and
         #Drop down menu for choosing UOA degree
         degree_selected_option = StringVar()
-        degree_selected_option.set("Select your desired degree of admission, note that some degrees may be omitted due to having to qualify/finishing for a  BSc first")
+        degree_selected_option.set("Select your desired degree of admission")
         degree_1_dropdown = OptionMenu(results_window, degree_selected_option, *UOA_undergrad_degrees)
-        degree_1_dropdown.place(relx=0.04, rely=0.2, anchor="center")
+        degree_1_dropdown.place(relx=0.2, rely=0.5, anchor="center")
 
 
 
     # Entry page done button which when clicked launches results window, and destroys entry page
     results_button = Button(new_class, text="Done", command=lambda: [final_window(), new_class.withdraw()])
-    results_button.place(relx=0.5, rely=0.8)
+    results_button.place(relx=0.5, rely=0.9)
 
 #Home page submit button which when clicked launches entry page and destroys home page
 submit_button=Button(box, text="Submit/Start", command=lambda: [submit_username(), root.withdraw()])
