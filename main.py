@@ -19,7 +19,7 @@ myLabel = Label(frame, text="Rank Score Calculator", bg="#FFE27A")
 myLabel.place(relx=0.45, rely=0.05)
 
 myLabel = Label(box, text="Enter your username:", bg="#CEECF6")
-myLabel.place(relx=0.2, rely=0.3, )
+myLabel.place(relx=0.35, rely=0.3, )
 
 username_entry =  tkinter.Entry(box)
 username_entry.place(relx=0.5, rely=0.3)
@@ -40,9 +40,7 @@ label.place(relx=0.8, rely=0.8, anchor="center")
 
 
 def submit_username():
-    #username = username_entry.get()
-    #frame.place_forget()
-    #root.place_forget()
+
 
 
 
@@ -116,48 +114,48 @@ def submit_username():
 
 
     #Subject and credit entry widgets
-    s1na = tkinter.Entry(new_class, borderwidth=1)
+    s1na = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s1na.place(relx=0.2, rely=0.2, anchor="center")
-    s2na = tkinter.Entry(new_class)
+    s2na = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s2na.place(relx=0.2, rely=0.35, anchor="center")
-    s3na = tkinter.Entry(new_class)
+    s3na = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s3na.place(relx=0.2, rely=0.5, anchor="center")
-    s4na = tkinter.Entry(new_class)
+    s4na = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s4na.place(relx=0.2, rely=0.65, anchor="center")
-    s5na = tkinter.Entry(new_class)
+    s5na = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s5na.place(relx=0.2, rely=0.8, anchor="center")
 
-    s1a = tkinter.Entry(new_class)
+    s1a = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s1a.place(relx=0.4, rely=0.2, anchor="center")
-    s2a = tkinter.Entry(new_class)
+    s2a = tkinter.Entry(new_class, width=10,highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s2a.place(relx=0.4, rely=0.35, anchor="center")
-    s3a = tkinter.Entry(new_class)
+    s3a = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s3a.place(relx=0.4, rely=0.5, anchor="center")
-    s4a = tkinter.Entry(new_class)
+    s4a = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s4a.place(relx=0.4, rely=0.65, anchor="center")
-    s5a = tkinter.Entry(new_class)
+    s5a = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s5a.place(relx=0.4, rely=0.8, anchor="center")
 
-    s1m = tkinter.Entry(new_class)
+    s1m = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s1m.place(relx=0.6, rely=0.2, anchor="center")
-    s2m = tkinter.Entry(new_class)
+    s2m = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s2m.place(relx=0.6, rely=0.35, anchor="center")
-    s3m = tkinter.Entry(new_class)
+    s3m = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s3m.place(relx=0.6, rely=0.5, anchor="center")
-    s4m = tkinter.Entry(new_class)
+    s4m = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s4m.place(relx=0.6, rely=0.65, anchor="center")
-    s5m = tkinter.Entry(new_class)
+    s5m = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s5m.place(relx=0.6, rely=0.8, anchor="center")
 
-    s1e = tkinter.Entry(new_class)
+    s1e = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s1e.place(relx=0.8, rely=0.2, anchor="center")
-    s2e = tkinter.Entry(new_class)
+    s2e = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s2e.place(relx=0.8, rely=0.35, anchor="center")
-    s3e = tkinter.Entry(new_class)
+    s3e = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s3e.place(relx=0.8, rely=0.5, anchor="center")
-    s4e = tkinter.Entry(new_class)
+    s4e = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s4e.place(relx=0.8, rely=0.65, anchor="center")
-    s5e = tkinter.Entry(new_class, )
+    s5e = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s5e.place(relx=0.8, rely=0.8, anchor="center")
 
 
@@ -203,11 +201,10 @@ def submit_username():
                 na_taken * 1
         )
 
+        username = username_entry.get()
 
-        total_rank_score = Label(results_window, text="Your rank score is", bg="#CEECF6")
-        total_rank_score.place(relx=0.4, rely=0.2, anchor="center")
-        total_rank_score = Label(results_window, text=rank_score, bg="#CEECF6")
-        total_rank_score.place(relx=0.5, rely=0.2, anchor="center")
+        total_rank_score = Label(results_window, text=f"{username}, your rank score is {rank_score}", bg="#CEECF6")
+        total_rank_score.place(relx=0.4, rely=0.5, anchor="center")
 
 
         # Breakdown of total credits of each grade
@@ -253,11 +250,11 @@ def submit_username():
 
     # Entry page done button which when clicked launches results window, and destroys entry page
     results_button = Button(new_class, text="Done", command=lambda: [final_window(), new_class.withdraw()])
-    results_button.place(relx=0.5, rely=0.9)
+    results_button.place(relx=0.5, rely=0.95)
 
 #Home page submit button which when clicked launches entry page and destroys home page
-submit_button=Button(box, text="Submit/Start", command=lambda: [submit_username(), root.withdraw()])
-submit_button.place(relx=0.5, rely=0.8)
+submit_button=Button(box, text="Submit/Start", width=20, command=lambda: [submit_username(), root.withdraw()])
+submit_button.place(relx=0.45, rely=0.8)
 
 
 
