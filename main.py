@@ -41,9 +41,6 @@ label.place(relx=0.8, rely=0.8, anchor="center")
 
 def submit_username():
 
-
-
-
     new_class = Toplevel()
     new_class.title("Entry of Subjects/Credits")
     new_class.configure(bg="#CEECF6")
@@ -203,28 +200,30 @@ def submit_username():
 
         username = username_entry.get()
 
-        total_rank_score = Label(results_window, text=f"{username}, your rank score is {rank_score}", bg="#CEECF6")
-        total_rank_score.place(relx=0.4, rely=0.5, anchor="center")
-
+        total_credits = Label(results_window, text="Total Credits: 80", bg="#CEECF6")
+        total_credits.place(relx=0.5, rely=0.15, anchor="center")
 
         # Breakdown of total credits of each grade
-        not_achieved_credits = Label(results_window, text="NOT ACHIEVED:", bg="white")
-        not_achieved_credits.place(relx=0.15, rely=0.3, anchor="center")
-        achieved_credits = Label(results_window, text="ACHIEVED:", bg="white")
-        achieved_credits.place(relx=0.35, rely=0.3, anchor="center")
-        merit_credits = Label(results_window, text="MERIT:", bg="white")
-        merit_credits.place(relx=0.55, rely=0.3, anchor="center")
-        excellence_credits = Label(results_window, text="EXCELLENCE:", bg="white")
-        excellence_credits.place(relx=0.75, rely=0.3, anchor="center")
+        not_achieved_credits = Label(results_window, text="NOT ACHIEVED:", bg="#CEECF6")
+        not_achieved_credits.place(relx=0.15, rely=0.25, anchor="center")
+        achieved_credits = Label(results_window, text="ACHIEVED:", bg="#CEECF6")
+        achieved_credits.place(relx=0.35, rely=0.25, anchor="center")
+        merit_credits = Label(results_window, text="MERIT:", bg="#CEECF6")
+        merit_credits.place(relx=0.55, rely=0.25, anchor="center")
+        excellence_credits = Label(results_window, text="EXCELLENCE:", bg="#CEECF6")
+        excellence_credits.place(relx=0.75, rely=0.25, anchor="center")
+
+        total_rank_score = Label(results_window, text=f"{username}, your rank score is {rank_score}", bg="#CEECF6")
+        total_rank_score.place(relx=0.5, rely=0.5, anchor="center")
 
         not_achieved_br = Label(results_window, text=na_taken, bg="white")
-        not_achieved_br.place(relx=0.15, rely=0.4, anchor="center")
+        not_achieved_br.place(relx=0.15, rely=0.35, anchor="center")
         achieved_br = Label(results_window, text=a_taken, bg="white")
-        achieved_br.place(relx=0.35, rely=0.4, anchor="center")
+        achieved_br.place(relx=0.35, rely=0.35, anchor="center")
         merit_br = Label(results_window, text=m_taken, bg="white")
-        merit_br.place(relx=0.55, rely=0.4, anchor="center")
+        merit_br.place(relx=0.55, rely=0.35, anchor="center")
         excellence_br = Label(results_window, text=e_taken, bg="white")
-        excellence_br.place(relx=0.75, rely=0.4, anchor="center")
+        excellence_br.place(relx=0.75, rely=0.35, anchor="center")
 
 
         #Dictionary of UOA undergrad degrees with assigned value as needed rank score
@@ -237,14 +236,32 @@ def submit_username():
         "Bachelor of Dance Studies (BDanceSt)": 150, "Bachelor of Music (BMus)": 150, "Bachelor of Music (BMus)": 150, "Bachelor of Science (BSc)": 200,
         "Bachelor of Health Sciences (BHSc)": 200}
 
+        def meet_rs():
+            left = min(degree_1_dropdown, rank_score)
+            left_label = Label(results_window, text=f"You're missing {left}, credits", bg="white")
+            left_label.place(relx=0.55, rely=0.35, anchor="center")
+
+        def clicked():
+            if degree_selected_option:
+                meet_rs()
+
 
 #degrees which require to finish bachelor of science first year then - Bachelor of Medical Imaging (Honours) (BMedImag(Hons)),
 #Bachelor of Medicine and Bachelor of Surgery (MBChB), optometry, and
         #Drop down menu for choosing UOA degree
         degree_selected_option = StringVar()
         degree_selected_option.set("Select your desired degree of admission")
-        degree_1_dropdown = OptionMenu(results_window, degree_selected_option, *UOA_undergrad_degrees)
-        degree_1_dropdown.place(relx=0.2, rely=0.5, anchor="center")
+        degree_1_dropdown = OptionMenu(results_window, degree_selected_option, *UOA_undergrad_degrees, command=clicked)
+        degree_1_dropdown.place(relx=0.2, rely=0.55, anchor="center")
+
+
+
+        # Image3 final
+        image = Image.open("good-job 1.png")
+        image = image.resize((60, 60))
+        img2 = ImageTk.PhotoImage(image)
+        label = Label(results_window, image=img2, bg="#CEECF6")
+        label.place(relx=0.8, rely=0.8, anchor="center")
 
 
 
