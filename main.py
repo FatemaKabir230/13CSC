@@ -15,7 +15,9 @@ frame.place(relwidth=1, relheight=1)
 box=Frame(root, bg="#CEECF6")
 box.place(relx=0.5, rely= 0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
-myLabel = Label(frame, text="Rank Score Calculator", bg="#FFE27A")
+font = ("Nanum Pen", 20)
+
+myLabel = Label(frame, text="Rank Score Calculator", font=font,  bg="#FFE27A")
 myLabel.place(relx=0.45, rely=0.05)
 
 myLabel = Label(box, text="Enter your username:", bg="#CEECF6")
@@ -165,6 +167,7 @@ def submit_username():
         results_window.resizable(True, True)
         results_window.geometry("1200x700")
 
+
         frame = Frame(results_window, bg="#FFE27A")
         frame.place(relwidth=1, relheight=1)
 
@@ -213,8 +216,8 @@ def submit_username():
         excellence_credits = Label(results_window, text="EXCELLENCE:", bg="#CEECF6")
         excellence_credits.place(relx=0.75, rely=0.25, anchor="center")
 
-        total_rank_score = Label(results_window, text=f"{username}, your rank score is {rank_score}", bg="#CEECF6")
-        total_rank_score.place(relx=0.5, rely=0.5, anchor="center")
+        rank_score_label = Label(results_window, text=f"{username}, your rank score is {rank_score}", bg="#CEECF6")
+        rank_score_label.place(relx=0.5, rely=0.5, anchor="center")
 
         not_achieved_br = Label(results_window, text=na_taken, bg="white")
         not_achieved_br.place(relx=0.15, rely=0.35, anchor="center")
@@ -236,14 +239,23 @@ def submit_username():
         "Bachelor of Dance Studies (BDanceSt)": 150, "Bachelor of Music (BMus)": 150, "Bachelor of Music (BMus)": 150, "Bachelor of Science (BSc)": 200,
         "Bachelor of Health Sciences (BHSc)": 200}
 
-        def meet_rs():
-            left = min(degree_1_dropdown, rank_score)
-            left_label = Label(results_window, text=f"You're missing {left}, credits", bg="white")
-            left_label.place(relx=0.55, rely=0.35, anchor="center")
+        degree_meet = Label(results_window, text="")
+        degree_meet.place(relx=0.5, rely=0.6, anchor="center")
 
-        def clicked():
-            if degree_selected_option:
-                meet_rs()
+        def clicked(selected_degree):
+            meet_rs()
+
+        def meet_rs():
+            selected_degree = degree_selected_option.get()
+            required_rank_score = UOA_undergrad_degrees[selected_degree]
+            cr_left = required_rank_score - rank_score
+
+
+            if cr_left <=0:
+                degree_meet.config(text=f"Great! You meet your rank score, and qualify for {selected_degree}")
+
+            else:
+                degree_meet.config(text=f"You need {cr_left} more rank score points for {selected_degree}")
 
 
 #degrees which require to finish bachelor of science first year then - Bachelor of Medical Imaging (Honours) (BMedImag(Hons)),
@@ -258,11 +270,10 @@ def submit_username():
 
         # Image3 final
         image = Image.open("good-job 1.png")
-        image = image.resize((60, 60))
+        image = image.resize((20, 20))
         img2 = ImageTk.PhotoImage(image)
         label = Label(results_window, image=img2, bg="#CEECF6")
         label.place(relx=0.8, rely=0.8, anchor="center")
-
 
 
     # Entry page done button which when clicked launches results window, and destroys entry page
