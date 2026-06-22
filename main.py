@@ -208,25 +208,25 @@ def submit_username():
 
         # Breakdown of total credits of each grade
         not_achieved_credits = Label(results_window, text="NOT ACHIEVED:", bg="#CEECF6")
-        not_achieved_credits.place(relx=0.15, rely=0.25, anchor="center")
+        not_achieved_credits.place(relx=0.2, rely=0.25, anchor="center")
         achieved_credits = Label(results_window, text="ACHIEVED:", bg="#CEECF6")
-        achieved_credits.place(relx=0.35, rely=0.25, anchor="center")
+        achieved_credits.place(relx=0.4, rely=0.25, anchor="center")
         merit_credits = Label(results_window, text="MERIT:", bg="#CEECF6")
-        merit_credits.place(relx=0.55, rely=0.25, anchor="center")
+        merit_credits.place(relx=0.6, rely=0.25, anchor="center")
         excellence_credits = Label(results_window, text="EXCELLENCE:", bg="#CEECF6")
-        excellence_credits.place(relx=0.75, rely=0.25, anchor="center")
+        excellence_credits.place(relx=0.8, rely=0.25, anchor="center")
 
         rank_score_label = Label(results_window, text=f"{username}, your rank score is {rank_score}", bg="#CEECF6")
         rank_score_label.place(relx=0.5, rely=0.5, anchor="center")
 
         not_achieved_br = Label(results_window, text=na_taken, bg="white")
-        not_achieved_br.place(relx=0.15, rely=0.35, anchor="center")
+        not_achieved_br.place(relx=0.2, rely=0.35, anchor="center")
         achieved_br = Label(results_window, text=a_taken, bg="white")
-        achieved_br.place(relx=0.35, rely=0.35, anchor="center")
+        achieved_br.place(relx=0.4, rely=0.35, anchor="center")
         merit_br = Label(results_window, text=m_taken, bg="white")
-        merit_br.place(relx=0.55, rely=0.35, anchor="center")
+        merit_br.place(relx=0.6, rely=0.35, anchor="center")
         excellence_br = Label(results_window, text=e_taken, bg="white")
-        excellence_br.place(relx=0.75, rely=0.35, anchor="center")
+        excellence_br.place(relx=0.8, rely=0.35, anchor="center")
 
 
         #Dictionary of UOA undergrad degrees with assigned value as needed rank score
@@ -242,9 +242,6 @@ def submit_username():
         degree_meet = Label(results_window, text="")
         degree_meet.place(relx=0.5, rely=0.6, anchor="center")
 
-        def clicked(selected_degree):
-            meet_rs()
-
         def meet_rs():
             selected_degree = degree_selected_option.get()
             required_rank_score = UOA_undergrad_degrees[selected_degree]
@@ -257,6 +254,8 @@ def submit_username():
             else:
                 degree_meet.config(text=f"You need {cr_left} more rank score points for {selected_degree}")
 
+        def clicked(selected_degree):
+            meet_rs()
 
 #degrees which require to finish bachelor of science first year then - Bachelor of Medical Imaging (Honours) (BMedImag(Hons)),
 #Bachelor of Medicine and Bachelor of Surgery (MBChB), optometry, and
@@ -266,14 +265,18 @@ def submit_username():
         degree_1_dropdown = OptionMenu(results_window, degree_selected_option, *UOA_undergrad_degrees, command=clicked)
         degree_1_dropdown.place(relx=0.2, rely=0.55, anchor="center")
 
+        degree1_selected_option = StringVar()
+        degree1_selected_option.set("Select your desired degree of admission")
+        degree_2_dropdown = OptionMenu(results_window, degree1_selected_option, *UOA_undergrad_degrees, command=clicked)
+        degree_2_dropdown.place(relx=0.2, rely=0.6, anchor="center")
 
-
-        # Image3 final
+        # Image 3
         image = Image.open("good-job 1.png")
-        image = image.resize((20, 20))
+        image = image.resize((250, 250))
         img2 = ImageTk.PhotoImage(image)
         label = Label(results_window, image=img2, bg="#CEECF6")
-        label.place(relx=0.8, rely=0.8, anchor="center")
+        label.image = img2
+        label.place(relx=0.8, rely=0.7, anchor="center")
 
 
     # Entry page done button which when clicked launches results window, and destroys entry page
@@ -281,7 +284,7 @@ def submit_username():
     results_button.place(relx=0.5, rely=0.95)
 
 #Home page submit button which when clicked launches entry page and destroys home page
-submit_button=Button(box, text="Submit/Start", width=20, command=lambda: [submit_username(), root.withdraw()])
+submit_button=Button(box, text="Submit/Start", width=20, command=lambda: [root.withdraw(), submit_username()])
 submit_button.place(relx=0.45, rely=0.8)
 
 
