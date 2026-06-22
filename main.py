@@ -2,12 +2,13 @@ import tkinter
 from ctypes.wintypes import LANGID
 from tkinter import*
 from PIL import ImageTk, Image
+from tkextrafont import Font
 
 root = Tk()
 root.geometry("1200x700")
 root.resizable(True,True)
 root.title("Rank Score Calculator Intro")
-
+cus_font = Font(file="nanum-pen.zip", size="20")
 
 frame = Frame(root, bg="#FFE27A")
 frame.place(relwidth=1, relheight=1)
@@ -15,12 +16,12 @@ frame.place(relwidth=1, relheight=1)
 box=Frame(root, bg="#CEECF6")
 box.place(relx=0.5, rely= 0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
-font = ("Nanum Pen", 20)
+font = ("Nanum-Pen", 20)
 
-myLabel = Label(frame, text="Rank Score Calculator", font=font,  bg="#FFE27A")
+myLabel = Label(frame, text="What's Your Rank?", font=cus_font,  bg="#FFE27A")
 myLabel.place(relx=0.45, rely=0.05)
 
-myLabel = Label(box, text="Enter your username:", bg="#CEECF6")
+myLabel = Label(box, text="Name:", bg="#CEECF6")
 myLabel.place(relx=0.35, rely=0.3, )
 
 username_entry =  tkinter.Entry(box)
@@ -157,6 +158,26 @@ def submit_username():
     s5e = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s5e.place(relx=0.8, rely=0.8, anchor="center")
 
+    #Group all user entries for validation
+    all_entries = [s1na, s1a, s1m, s1e,
+                   s2na, s2a, s2m, s2e,
+                   s3na, s3a, s3m, s3e,
+                   s4na, s4a, s4m, s4e,
+                   s5na, s5a, s5m, s5e]
+
+    #Config label which will return error message if user validation fails
+    done_instruction_label = Label(new_class, text="Click below button once done")
+    done_instruction_label.place(relx=0.5, rely=0.7, anchor="center")
+
+    #Function for validation
+    def test_int():
+        try:
+            for entry in all_entries:
+                int(entry.get() or 0)
+
+
+        except ValueError:
+            done_instruction_label.config(text="Please enter numbers only")
 
 
     # Launches results screen
@@ -179,6 +200,7 @@ def submit_username():
         total_a = sum(int(e.get() or 0) for e in [s1a, s2a, s3a, s4a, s5a])
         total_m = sum(int(e.get() or 0) for e in [s1m, s2m, s3m, s4m, s5m])
         total_e = sum(int(e.get() or 0) for e in [s1e, s2e, s3e, s4e, s5e])
+
 
         max_credits_left = 80
 
@@ -203,6 +225,10 @@ def submit_username():
 
         username = username_entry.get()
 
+        myLabel = Label(results_window, text="What's Your Rank?", font="Helvetica", bg="#FFE27A")
+        myLabel.place(relx=0.5, rely=0.05, anchor="center")
+
+
         total_credits = Label(results_window, text="Total Credits: 80", bg="#CEECF6")
         total_credits.place(relx=0.5, rely=0.15, anchor="center")
 
@@ -219,14 +245,17 @@ def submit_username():
         rank_score_label = Label(results_window, text=f"{username}, your rank score is {rank_score}", bg="#CEECF6")
         rank_score_label.place(relx=0.5, rely=0.5, anchor="center")
 
-        not_achieved_br = Label(results_window, text=na_taken, bg="white")
+        not_achieved_br = Label(results_window, text=na_taken, bg="#CEECF6")
         not_achieved_br.place(relx=0.2, rely=0.35, anchor="center")
-        achieved_br = Label(results_window, text=a_taken, bg="white")
+        achieved_br = Label(results_window, text=a_taken, bg="#CEECF6")
         achieved_br.place(relx=0.4, rely=0.35, anchor="center")
-        merit_br = Label(results_window, text=m_taken, bg="white")
+        merit_br = Label(results_window, text=m_taken, bg="#CEECF6")
         merit_br.place(relx=0.6, rely=0.35, anchor="center")
-        excellence_br = Label(results_window, text=e_taken, bg="white")
+        excellence_br = Label(results_window, text=e_taken, bg="#CEECF6")
         excellence_br.place(relx=0.8, rely=0.35, anchor="center")
+
+
+
 
 
         #Dictionary of UOA undergrad degrees with assigned value as needed rank score
@@ -239,36 +268,47 @@ def submit_username():
         "Bachelor of Dance Studies (BDanceSt)": 150, "Bachelor of Music (BMus)": 150, "Bachelor of Music (BMus)": 150, "Bachelor of Science (BSc)": 200,
         "Bachelor of Health Sciences (BHSc)": 200}
 
-        degree_meet = Label(results_window, text="")
-        degree_meet.place(relx=0.5, rely=0.6, anchor="center")
+        #Config labels for if rank score is met (degree 1 and 2)
+        degree_meet_1 = Label(results_window, text="", bg="#CEECF6")
+        degree_meet_1.place(relx=0.55, rely=0.6, anchor="center")
 
-        def meet_rs():
+        degree_meet_2 = Label(results_window, text="", bg="#CEECF6")
+        degree_meet_2.place(relx=0.55, rely=0.7, anchor="center")
+
+        def meet_rs_1(selected_degree = "None"):
             selected_degree = degree_selected_option.get()
             required_rank_score = UOA_undergrad_degrees[selected_degree]
             cr_left = required_rank_score - rank_score
 
 
             if cr_left <=0:
-                degree_meet.config(text=f"Great! You meet your rank score, and qualify for {selected_degree}")
+                degree_meet_1.config(text=f"Great! You meet your rank score, and qualify for {selected_degree}")
 
             else:
-                degree_meet.config(text=f"You need {cr_left} more rank score points for {selected_degree}")
+                degree_meet_1.config(text=f"You need {cr_left} more rank score points for {selected_degree}")
 
-        def clicked(selected_degree):
-            meet_rs()
+        def meet_rs_2(selected_degree=None):
+            selected_degree = degree1_selected_option.get()
+            required_rank_score = UOA_undergrad_degrees[selected_degree]
+            cr_left = required_rank_score - rank_score
 
-#degrees which require to finish bachelor of science first year then - Bachelor of Medical Imaging (Honours) (BMedImag(Hons)),
-#Bachelor of Medicine and Bachelor of Surgery (MBChB), optometry, and
+            if cr_left <= 0:
+                degree_meet_2.config(text=f"Great! You meet your rank score, and qualify for {selected_degree}")
+
+            else:
+                degree_meet_2.config(text=f"You need {cr_left} more rank score points for {selected_degree}")
+
+
         #Drop down menu for choosing UOA degree
         degree_selected_option = StringVar()
         degree_selected_option.set("Select your desired degree of admission")
-        degree_1_dropdown = OptionMenu(results_window, degree_selected_option, *UOA_undergrad_degrees, command=clicked)
-        degree_1_dropdown.place(relx=0.2, rely=0.55, anchor="center")
+        degree_1_dropdown = OptionMenu(results_window, degree_selected_option, *UOA_undergrad_degrees, command=meet_rs_1)
+        degree_1_dropdown.place(relx=0.2, rely=0.6, anchor="center")
 
         degree1_selected_option = StringVar()
         degree1_selected_option.set("Select your desired degree of admission")
-        degree_2_dropdown = OptionMenu(results_window, degree1_selected_option, *UOA_undergrad_degrees, command=clicked)
-        degree_2_dropdown.place(relx=0.2, rely=0.6, anchor="center")
+        degree_2_dropdown = OptionMenu(results_window, degree1_selected_option, *UOA_undergrad_degrees, command=meet_rs_2)
+        degree_2_dropdown.place(relx=0.2, rely=0.7, anchor="center")
 
         # Image 3
         image = Image.open("good-job 1.png")
@@ -276,11 +316,11 @@ def submit_username():
         img2 = ImageTk.PhotoImage(image)
         label = Label(results_window, image=img2, bg="#CEECF6")
         label.image = img2
-        label.place(relx=0.8, rely=0.7, anchor="center")
+        label.place(relx=0.85, rely=0.7, anchor="center")
 
 
     # Entry page done button which when clicked launches results window, and destroys entry page
-    results_button = Button(new_class, text="Done", command=lambda: [final_window(), new_class.withdraw()])
+    results_button = Button(new_class, text="Done", command=lambda: [test_int(), final_window(), new_class.withdraw()])
     results_button.place(relx=0.5, rely=0.95)
 
 #Home page submit button which when clicked launches entry page and destroys home page
