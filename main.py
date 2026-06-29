@@ -8,7 +8,6 @@ root = Tk()
 root.geometry("1200x700")
 root.resizable(True,True)
 root.title("Rank Score Calculator Intro")
-cus_font = Font(file="nanum-pen.zip", size="20")
 
 frame = Frame(root, bg="#FFE27A")
 frame.place(relwidth=1, relheight=1)
@@ -18,10 +17,10 @@ box.place(relx=0.5, rely= 0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
 font = ("Nanum-Pen", 20)
 
-myLabel = Label(frame, text="What's Your Rank?", font=cus_font,  bg="#FFE27A")
+myLabel = Label(frame, text="What's Your Rank?", font="Tahoma", bg="#FFE27A")
 myLabel.place(relx=0.45, rely=0.05)
 
-myLabel = Label(box, text="Name:", bg="#CEECF6")
+myLabel = Label(box, text="Name:",font="Tahoma",  bg="#CEECF6")
 myLabel.place(relx=0.35, rely=0.3, )
 
 username_entry =  tkinter.Entry(box)
@@ -67,13 +66,13 @@ def submit_username():
     "Te Reo Rangatira","Tikanga ā-Iwi","Toi Ataata","Toi Puoro","Vagahau Niue","Visual Arts"]
 
 
-    n_ach = Label(new_class, text="Not Achieved:", bg="#CEECF6")
+    n_ach = Label(new_class, text="Not Achieved:", font="Tahoma", bg="#CEECF6")
     n_ach.place(relx=0.2, rely=0.03, anchor="center")
-    ach = Label(new_class, text="Achieved:", bg="#CEECF6")
+    ach = Label(new_class, text="Achieved:", font="Tahoma", bg="#CEECF6")
     ach.place(relx=0.4, rely=0.03, anchor="center")
-    mer = Label(new_class, text="Merit:", bg="#CEECF6")
+    mer = Label(new_class, text="Merit:", font="Tahoma", bg="#CEECF6")
     mer.place(relx=0.6, rely=0.03, anchor="center" )
-    ex = Label(new_class, text="Excellence:", bg="#CEECF6")
+    ex = Label(new_class, text="Excellence:", font="Tahoma", bg="#CEECF6")
     ex.place(relx=0.8, rely=0.03, anchor="center" )
 
 
@@ -166,8 +165,8 @@ def submit_username():
                    s5na, s5a, s5m, s5e]
 
     #Config label which will return error message if user validation fails
-    done_instruction_label = Label(new_class, text="Click below button once done")
-    done_instruction_label.place(relx=0.5, rely=0.7, anchor="center")
+    #done_instruction_label = Label(new_class, text="Click below button once done", font="Tahoma")
+    #done_instruction_label.place(relx=0.5, rely=0.93, anchor="center")
 
     #Function for validation
     def test_int():
@@ -177,7 +176,7 @@ def submit_username():
 
 
         except ValueError:
-            done_instruction_label.config(text="Please enter numbers only")
+            done_instruction_label.config(text="Please enter numbers only", font="Tahoma")
 
 
     # Launches results screen
@@ -225,33 +224,34 @@ def submit_username():
 
         username = username_entry.get()
 
-        myLabel = Label(results_window, text="What's Your Rank?", font="Helvetica", bg="#FFE27A")
+        myLabel = Label(results_window, text="What's Your Rank?", font="Tahoma", bg="#FFE27A")
         myLabel.place(relx=0.5, rely=0.05, anchor="center")
 
+        total_cr = e_taken + m_taken + a_taken + na_taken
 
-        total_credits = Label(results_window, text="Total Credits: 80", bg="#CEECF6")
+        total_credits = Label(results_window, text=total_cr, font="Tahoma", bg="#CEECF6")
         total_credits.place(relx=0.5, rely=0.15, anchor="center")
 
         # Breakdown of total credits of each grade
-        not_achieved_credits = Label(results_window, text="NOT ACHIEVED:", bg="#CEECF6")
+        not_achieved_credits = Label(results_window, text="NOT ACHIEVED:", font="Tahoma", bg="#CEECF6")
         not_achieved_credits.place(relx=0.2, rely=0.25, anchor="center")
-        achieved_credits = Label(results_window, text="ACHIEVED:", bg="#CEECF6")
+        achieved_credits = Label(results_window, text="ACHIEVED:", font="Tahoma", bg="#CEECF6")
         achieved_credits.place(relx=0.4, rely=0.25, anchor="center")
-        merit_credits = Label(results_window, text="MERIT:", bg="#CEECF6")
+        merit_credits = Label(results_window, text="MERIT:", font="Tahoma", bg="#CEECF6")
         merit_credits.place(relx=0.6, rely=0.25, anchor="center")
-        excellence_credits = Label(results_window, text="EXCELLENCE:", bg="#CEECF6")
+        excellence_credits = Label(results_window, text="EXCELLENCE:", font="Tahoma", bg="#CEECF6")
         excellence_credits.place(relx=0.8, rely=0.25, anchor="center")
 
-        rank_score_label = Label(results_window, text=f"{username}, your rank score is {rank_score}", bg="#CEECF6")
+        rank_score_label = Label(results_window, font="Tahoma", text=f"{username}, your rank score is {rank_score}", bg="#CEECF6")
         rank_score_label.place(relx=0.5, rely=0.5, anchor="center")
 
-        not_achieved_br = Label(results_window, text=na_taken, bg="#CEECF6")
+        not_achieved_br = Label(results_window, font="Tahoma", text=na_taken, bg="#CEECF6")
         not_achieved_br.place(relx=0.2, rely=0.35, anchor="center")
-        achieved_br = Label(results_window, text=a_taken, bg="#CEECF6")
+        achieved_br = Label(results_window, font="Tahoma", text=a_taken, bg="#CEECF6")
         achieved_br.place(relx=0.4, rely=0.35, anchor="center")
-        merit_br = Label(results_window, text=m_taken, bg="#CEECF6")
+        merit_br = Label(results_window, font="Tahoma", text=m_taken, bg="#CEECF6")
         merit_br.place(relx=0.6, rely=0.35, anchor="center")
-        excellence_br = Label(results_window, text=e_taken, bg="#CEECF6")
+        excellence_br = Label(results_window, font="Tahoma", text=e_taken, bg="#CEECF6")
         excellence_br.place(relx=0.8, rely=0.35, anchor="center")
 
 
@@ -268,24 +268,59 @@ def submit_username():
         "Bachelor of Dance Studies (BDanceSt)": 150, "Bachelor of Music (BMus)": 150, "Bachelor of Music (BMus)": 150, "Bachelor of Science (BSc)": 200,
         "Bachelor of Health Sciences (BHSc)": 200}
 
-        #Config labels for if rank score is met (degree 1 and 2)
-        degree_meet_1 = Label(results_window, text="", bg="#CEECF6")
+        credit_calc_option = {"Minimize Credits", "Maximize Credits"}
+
+        credit_calc_button = StringVar()
+        credit_calc_button.set("Choose calculation mode")
+        credit_calc_dropdown = OptionMenu(results_window, credit_calc_button, *credit_calc_option,
+                                          command=lambda: [meet_rs_1(), meet_rs_2()])
+        credit_calc_dropdown.place(relx=0.9, rely=0.05, anchor="center")
+
+        # Config labels for if rank score is met (degree 1 and 2)
+        degree_meet_1 = Label(results_window, font="Tahoma", text="", bg="#CEECF6")
         degree_meet_1.place(relx=0.55, rely=0.6, anchor="center")
 
-        degree_meet_2 = Label(results_window, text="", bg="#CEECF6")
+        degree_meet_2 = Label(results_window, font="Tahoma", text="", bg="#CEECF6")
         degree_meet_2.place(relx=0.55, rely=0.7, anchor="center")
 
-        def meet_rs_1(selected_degree = "None"):
+        # Config labels for credit calculation method (degree 1 and 2)
+        cr1_calc = Label(results_window, font="Tahoma", text="", bg="#CEECF6")
+        cr1_calc.place(relx=0.8, rely=0.6, anchor="center")
+
+        cr2_calc = Label(results_window, font="Tahoma", text="", bg="#CEECF6")
+        cr2_calc.place(relx=0.8, rely=0.7, anchor="center")
+
+        def meet_rs_1(selected_degree="None"):
             selected_degree = degree_selected_option.get()
             required_rank_score = UOA_undergrad_degrees[selected_degree]
             cr_left = required_rank_score - rank_score
 
-
-            if cr_left <=0:
-                degree_meet_1.config(text=f"Great! You meet your rank score, and qualify for {selected_degree}")
+            if cr_left <= 0:
+                degree_meet_1.config(font="Tahoma", text=f"Great! You qualify for {selected_degree}")
 
             else:
-                degree_meet_1.config(text=f"You need {cr_left} more rank score points for {selected_degree}")
+                degree_meet_1.config(font="Tahoma", text=f"You need {cr_left} more rank score points")
+
+                if credit_calc_button.get() == "Minimize Credits":
+                    e = cr_left // 4
+                    remaining = cr_left % 4
+                    m = 0
+                    a = 0
+                    if remaining == 3:
+                        m = 1
+                    elif remaining == 2:
+                        a = 1
+                    elif remaining == 1:
+                        e += 1
+                    cr1_calc.config(font="Tahoma", text=f"{e}E + {m}M + {a}A")
+
+                if credit_calc_button.get() == "Maximize Credits":
+                    a = cr_left // 2
+                    remaining = cr_left % 2
+                    m = 0
+                    if remaining == 1:
+                        m = 1
+                    cr1_calc.config(font="Tahoma", text=f"{a}A + {m}M")
 
         def meet_rs_2(selected_degree=None):
             selected_degree = degree1_selected_option.get()
@@ -293,11 +328,31 @@ def submit_username():
             cr_left = required_rank_score - rank_score
 
             if cr_left <= 0:
-                degree_meet_2.config(text=f"Great! You meet your rank score, and qualify for {selected_degree}")
+                degree_meet_2.config(font="Tahoma", text=f"Great! You qualify for {selected_degree}")
 
             else:
-                degree_meet_2.config(text=f"You need {cr_left} more rank score points for {selected_degree}")
+                degree_meet_2.config(font="Tahoma", text=f"You need {cr_left} more rank score points")
 
+                if credit_calc_button.get() == "Minimize Credits":
+                    e = cr_left // 4
+                    remaining = cr_left % 4
+                    m = 0
+                    a = 0
+                    if remaining == 3:
+                        m = 1
+                    elif remaining == 2:
+                        a = 1
+                    elif remaining == 1:
+                        e += 1
+                    cr2_calc.config(font="Tahoma", text=f"{e}E + {m}M + {a}A")
+
+                if credit_calc_button.get() == "Maximize Credits":
+                    a = cr_left // 2
+                    remaining = cr_left % 2
+                    m = 0
+                    if remaining == 1:
+                        m = 1
+                    cr2_calc.config(font="Tahoma", text=f"{a}A + {m}M")
 
         #Drop down menu for choosing UOA degree
         degree_selected_option = StringVar()
@@ -312,19 +367,19 @@ def submit_username():
 
         # Image 3
         image = Image.open("good-job 1.png")
-        image = image.resize((250, 250))
+        image = image.resize((150, 150))
         img2 = ImageTk.PhotoImage(image)
         label = Label(results_window, image=img2, bg="#CEECF6")
         label.image = img2
-        label.place(relx=0.85, rely=0.7, anchor="center")
+        label.place(relx=0.9, rely=0.7, anchor="center")
 
 
     # Entry page done button which when clicked launches results window, and destroys entry page
-    results_button = Button(new_class, text="Done", command=lambda: [test_int(), final_window(), new_class.withdraw()])
+    results_button = Button(new_class, font="Tahoma", text="Done", command=lambda: [test_int(), final_window(), new_class.withdraw()])
     results_button.place(relx=0.5, rely=0.95)
 
 #Home page submit button which when clicked launches entry page and destroys home page
-submit_button=Button(box, text="Submit/Start", width=20, command=lambda: [root.withdraw(), submit_username()])
+submit_button=Button(box, font="Tahoma", text="Submit/Start", width=20, command=lambda: [root.withdraw(), submit_username()])
 submit_button.place(relx=0.45, rely=0.8)
 
 
