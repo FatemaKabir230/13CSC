@@ -165,8 +165,8 @@ def submit_username():
                    s5na, s5a, s5m, s5e]
 
     #Config label which will return error message if user validation fails
-    #done_instruction_label = Label(new_class, text="Click below button once done", font="Tahoma")
-    #done_instruction_label.place(relx=0.5, rely=0.93, anchor="center")
+    done_instruction_label = Label(new_class, text="", bg="#CEECF6", font="Tahoma")
+    done_instruction_label.place(relx=0.5, rely=0.93, anchor="center")
 
     #Function for validation
     def test_int():
@@ -359,6 +359,7 @@ def submit_username():
         degree_selected_option.set("Select your desired degree of admission")
         degree_1_dropdown = OptionMenu(results_window, degree_selected_option, *UOA_undergrad_degrees, command=meet_rs_1)
         degree_1_dropdown.place(relx=0.2, rely=0.6, anchor="center")
+        degree_1_dropdown.config(font=("Tahoma", 10))
 
         degree1_selected_option = StringVar()
         degree1_selected_option.set("Select your desired degree of admission")
@@ -367,11 +368,11 @@ def submit_username():
 
         # Image 3
         image = Image.open("good-job 1.png")
-        image = image.resize((150, 150))
+        image = image.resize((200, 200))
         img2 = ImageTk.PhotoImage(image)
         label = Label(results_window, image=img2, bg="#CEECF6")
         label.image = img2
-        label.place(relx=0.9, rely=0.7, anchor="center")
+        label.place(relx=0.85, rely=0.7, anchor="center")
 
 
     # Entry page done button which when clicked launches results window, and destroys entry page
