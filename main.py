@@ -17,11 +17,11 @@ box.place(relx=0.5, rely= 0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
 font = ("Nanum-Pen", 20)
 
-myLabel = Label(frame, text="What's Your Rank?", font="Tahoma", bg="#FFE27A")
-myLabel.place(relx=0.45, rely=0.05)
+myLabel = Label(frame, text="What's Your Rank?", font=("Tahoma", 20), bg="#FFE27A")
+myLabel.place(relx=0.5, rely=0.06, anchor="center")
 
-myLabel = Label(box, text="Name:",font="Tahoma",  bg="#CEECF6")
-myLabel.place(relx=0.35, rely=0.3, )
+myLabel = Label(box, text="Name:", font=("Tahoma", 13),  bg="#CEECF6")
+myLabel.place(relx=0.35, rely=0.3)
 
 username_entry =  tkinter.Entry(box)
 username_entry.place(relx=0.5, rely=0.3)
@@ -243,7 +243,7 @@ def submit_username():
         excellence_credits.place(relx=0.8, rely=0.25, anchor="center")
 
         rank_score_label = Label(results_window, font="Tahoma", text=f"{username}, your rank score is {rank_score}", bg="#CEECF6")
-        rank_score_label.place(relx=0.5, rely=0.5, anchor="center")
+        rank_score_label.place(relx=0.5, rely=0.45, anchor="center")
 
         not_achieved_br = Label(results_window, font="Tahoma", text=na_taken, bg="#CEECF6")
         not_achieved_br.place(relx=0.2, rely=0.35, anchor="center")
@@ -278,10 +278,10 @@ def submit_username():
 
         # Config labels for if rank score is met (degree 1 and 2)
         degree_meet_1 = Label(results_window, font="Tahoma", text="", bg="#CEECF6")
-        degree_meet_1.place(relx=0.55, rely=0.6, anchor="center")
+        degree_meet_1.place(relx=0.5, rely=0.53, anchor="center")
 
         degree_meet_2 = Label(results_window, font="Tahoma", text="", bg="#CEECF6")
-        degree_meet_2.place(relx=0.55, rely=0.7, anchor="center")
+        degree_meet_2.place(relx=0.5, rely=0.63, anchor="center")
 
         # Config labels for credit calculation method (degree 1 and 2)
         cr1_calc = Label(results_window, font="Tahoma", text="", bg="#CEECF6")
@@ -358,13 +358,13 @@ def submit_username():
         degree_selected_option = StringVar()
         degree_selected_option.set("Select your desired degree of admission")
         degree_1_dropdown = OptionMenu(results_window, degree_selected_option, *UOA_undergrad_degrees, command=meet_rs_1)
-        degree_1_dropdown.place(relx=0.2, rely=0.6, anchor="center")
+        degree_1_dropdown.place(relx=0.2, rely=0.53, anchor="center")
         degree_1_dropdown.config(font=("Tahoma", 10))
 
         degree1_selected_option = StringVar()
         degree1_selected_option.set("Select your desired degree of admission")
         degree_2_dropdown = OptionMenu(results_window, degree1_selected_option, *UOA_undergrad_degrees, command=meet_rs_2)
-        degree_2_dropdown.place(relx=0.2, rely=0.7, anchor="center")
+        degree_2_dropdown.place(relx=0.2, rely=0.63, anchor="center")
 
         # Image 3
         image = Image.open("good-job 1.png")
@@ -381,7 +381,7 @@ def submit_username():
 
 #Home page submit button which when clicked launches entry page and destroys home page
 submit_button=Button(box, font="Tahoma", text="Submit/Start", width=20, command=lambda: [root.withdraw(), submit_username()])
-submit_button.place(relx=0.45, rely=0.8)
+submit_button.place(relx=0.5, rely=0.8, anchor="center")
 
 
 
