@@ -2,13 +2,14 @@ import tkinter
 from ctypes.wintypes import LANGID
 from tkinter import*
 from PIL import ImageTk, Image
-from tkextrafont import Font
+import tkinter.font as tkFont
 
 root = Tk()
 root.geometry("1200x700")
 root.resizable(True,True)
 root.title("Rank Score Calculator Intro")
 
+# Creates main 2 frames for home page
 frame = Frame(root, bg="#FFE27A")
 frame.place(relwidth=1, relheight=1)
 
@@ -17,12 +18,15 @@ box.place(relx=0.5, rely= 0.5, relwidth=0.9, relheight=0.8, anchor="center")
 
 font = ("Nanum-Pen", 20)
 
+# Program title name label for results page
 myLabel = Label(frame, text="What's Your Rank?", font=("Tahoma", 20), bg="#FFE27A")
 myLabel.place(relx=0.5, rely=0.06, anchor="center")
 
+# Label for username box in home page
 myLabel = Label(box, text="Name:", font=("Tahoma", 13),  bg="#CEECF6")
 myLabel.place(relx=0.35, rely=0.3)
 
+# Entry box for user to enter in name in home page
 username_entry =  tkinter.Entry(box)
 username_entry.place(relx=0.5, rely=0.3)
 
@@ -56,6 +60,7 @@ def submit_username():
     box = Frame(new_class, bg="white")
     box.place(relx=0.55, rely=0.5, relwidth=0.8, relheight=0.8, anchor="center")
 
+    # List of all NCEA Level 3 subject for later dropdowns in credit-entry page
     subjects = ["Accounting","Adult Education","Agricultural and Horticultural Science","Agribusiness","Art History","Biology","Business and Management","Business Studies","Chemistry","Chinese (Mandarin)",
     "Classical Studies","Cook Islands Māori","Core Skills","Dance","Design and Visual Communication","Digital Technologies","Drama","Driver Licence (Class 1)",
     "Early Childhood Education","Earth and Space Science","Economics","Education for Sustainability","English","English for Academic Purposes","English Language",
@@ -65,7 +70,7 @@ def submit_username():
     "Social Studies","Sociology","Spanish","Supported Learning","Te Ao Haka","Technology","Te Reo Māori","Te Reo Māori Kūki ‘Āirani","Te Reo Matatini","Te Reo Pāngarau",
     "Te Reo Rangatira","Tikanga ā-Iwi","Toi Ataata","Toi Puoro","Vagahau Niue","Visual Arts"]
 
-
+    # Labels for grades at the top of credit-entry page
     n_ach = Label(new_class, text="Not Achieved:", font="Tahoma", bg="#CEECF6")
     n_ach.place(relx=0.2, rely=0.03, anchor="center")
     ach = Label(new_class, text="Achieved:", font="Tahoma", bg="#CEECF6")
@@ -76,8 +81,7 @@ def submit_username():
     ex.place(relx=0.8, rely=0.03, anchor="center" )
 
 
-    #Drowdown boxes
-
+    # Labels for subject dropdown box for credit-entry
     selected_option = StringVar()
     selected_option.set("Select a subject")
 
@@ -96,6 +100,7 @@ def submit_username():
     subject5 = StringVar()
     subject5.set("Select a subject")
 
+    # Subject dropdown boxes for credit-entry
     dropdown1 = OptionMenu(new_class, subject1, selected_option, *subjects)
     dropdown1.place(relx=0.07, rely=0.2, anchor="center")
 
@@ -112,7 +117,7 @@ def submit_username():
     dropdown5.place(relx=0.07, rely=0.8, anchor="center")
 
 
-    #Subject and credit entry widgets
+    # 20 credit-entry boxes for users to enter in their attained credits in credit-entry page
     s1na = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s1na.place(relx=0.2, rely=0.2, anchor="center")
     s2na = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
@@ -157,18 +162,18 @@ def submit_username():
     s5e = tkinter.Entry(new_class, width=10, highlightbackground="#CEECF6", highlightthickness=2, highlightcolor="#FFE27A")
     s5e.place(relx=0.8, rely=0.8, anchor="center")
 
-    #Group all user entries for validation
+    # Group all user entries for validation
     all_entries = [s1na, s1a, s1m, s1e,
                    s2na, s2a, s2m, s2e,
                    s3na, s3a, s3m, s3e,
                    s4na, s4a, s4m, s4e,
                    s5na, s5a, s5m, s5e]
 
-    #Config label which will return error message if user validation fails
+    # Config label which will return error message if user validation fails
     done_instruction_label = Label(new_class, text="", bg="#CEECF6", font="Tahoma")
     done_instruction_label.place(relx=0.5, rely=0.93, anchor="center")
 
-    #Function for validation
+    # Credit-entry validation function
     def test_int():
         try:
             for entry in all_entries:
@@ -179,14 +184,13 @@ def submit_username():
             done_instruction_label.config(text="Please enter numbers only", font="Tahoma")
 
 
-    # Launches results screen
+    # Launches results screen and creates 2 main frames of results page
     def final_window():
         results_window = Toplevel()
         results_window.title("Rank Score Results and Desired Degree")
         results_window.configure(bg="#CEECF6")
         results_window.resizable(True, True)
         results_window.geometry("1200x700")
-
 
         frame = Frame(results_window, bg="#FFE27A")
         frame.place(relwidth=1, relheight=1)
@@ -200,7 +204,7 @@ def submit_username():
         total_m = sum(int(e.get() or 0) for e in [s1m, s2m, s3m, s4m, s5m])
         total_e = sum(int(e.get() or 0) for e in [s1e, s2e, s3e, s4e, s5e])
 
-
+        # Calculation for total E, M, A, NA credits for results page
         max_credits_left = 80
 
         e_taken = min(total_e, max_credits_left)
@@ -215,6 +219,7 @@ def submit_username():
         na_taken = min(total_na, max_credits_left)
         max_credits_left -= na_taken
 
+        # Calculation for user's total rank score for results page
         rank_score = (
                 e_taken * 4 +
                 m_taken * 3 +
@@ -222,17 +227,17 @@ def submit_username():
                 na_taken * 1
         )
 
-        username = username_entry.get()
-
+        # Program title name label for results page
         myLabel = Label(results_window, text="What's Your Rank?", font="Tahoma", bg="#FFE27A")
         myLabel.place(relx=0.5, rely=0.05, anchor="center")
 
+        # Calculation for total credits attained by user
         total_cr = e_taken + m_taken + a_taken + na_taken
-
+        # Label for displaying total credits attained by user
         total_credits = Label(results_window, text=total_cr, font="Tahoma", bg="#CEECF6")
         total_credits.place(relx=0.5, rely=0.15, anchor="center")
 
-        # Breakdown of total credits of each grade
+        # Grade labels for breakdown of total credits for each grade
         not_achieved_credits = Label(results_window, text="NOT ACHIEVED:", font="Tahoma", bg="#CEECF6")
         not_achieved_credits.place(relx=0.2, rely=0.25, anchor="center")
         achieved_credits = Label(results_window, text="ACHIEVED:", font="Tahoma", bg="#CEECF6")
@@ -242,9 +247,13 @@ def submit_username():
         excellence_credits = Label(results_window, text="EXCELLENCE:", font="Tahoma", bg="#CEECF6")
         excellence_credits.place(relx=0.8, rely=0.25, anchor="center")
 
+        # Pulls username from home page for announcing user's rank score label in results page
+        username = username_entry.get()
+        # Label for announcing user's rank score in results page
         rank_score_label = Label(results_window, font="Tahoma", text=f"{username}, your rank score is {rank_score}", bg="#CEECF6")
         rank_score_label.place(relx=0.5, rely=0.45, anchor="center")
 
+        # Actual breakdown of total credits for each grade
         not_achieved_br = Label(results_window, font="Tahoma", text=na_taken, bg="#CEECF6")
         not_achieved_br.place(relx=0.2, rely=0.35, anchor="center")
         achieved_br = Label(results_window, font="Tahoma", text=a_taken, bg="#CEECF6")
